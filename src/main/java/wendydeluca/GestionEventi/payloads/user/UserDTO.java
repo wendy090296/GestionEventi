@@ -1,4 +1,4 @@
-package wendydeluca.GestionEventi.payloads;
+package wendydeluca.GestionEventi.payloads.user;
 
 public record UserDTO (String name,
                        String surname,

@@ -7,10 +7,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import wendydeluca.GestionEventi.entities.Event;
+import wendydeluca.GestionEventi.entities.Role;
 import wendydeluca.GestionEventi.entities.User;
 import wendydeluca.GestionEventi.exceptions.BadRequestException;
 import wendydeluca.GestionEventi.exceptions.NotFoundException;
-import wendydeluca.GestionEventi.payloads.UserDTO;
+import wendydeluca.GestionEventi.payloads.user.UserDTO;
 import wendydeluca.GestionEventi.repositories.UserDAO;
 
 import java.util.UUID;
@@ -64,4 +66,12 @@ public class UserService {
         User found = this.findById(userId);
         userDAO.delete(found);
     }
+
+    public User setAdmin(UUID id){
+        User user = userDAO.findById(id).orElseThrow(()-> new NotFoundException(id));
+        user.setRole(Role.EVENT_MANAGER);
+        return userDAO.save(user);
+    }
+
+    
 }
