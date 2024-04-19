@@ -37,6 +37,16 @@ public class UserController {
 
     }
 
+    @PostMapping("/{userId}")
+    @PreAuthorize("hasAuthority('EVENT_MANAGER')")
+    public User saveUser(@PathVariable UUID userId, @RequestBody @Validated UserDTO body, BindingResult validation){
+        if(validation.hasErrors()){
+            System.out.println(validation.getAllErrors());
+            throw new BadRequestException(validation.getAllErrors());
+        }
+        return userService.findByIdAndUpdate(userId,body);
+    }
+
     @PutMapping("/{userId}")
     @PreAuthorize("hasAuthority('EVENT_MANAGER')")
     public User findUserByIdAndUpdate(@PathVariable UUID userId, @RequestBody @Validated UserDTO body, BindingResult validation){

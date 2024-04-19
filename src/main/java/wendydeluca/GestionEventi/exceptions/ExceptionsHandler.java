@@ -30,12 +30,12 @@ public class ExceptionsHandler {
         return new ErrorResponseDTO(ex.getMessage(), LocalDateTime.now());
     }
 
-//    @ExceptionHandler(UnauthorizedException.class)
-//    @ResponseStatus(HttpStatus.UNAUTHORIZED) //401
-//    public ErrorResponseDTO handleUnauthorized(UnauthorizedException ex){
-//        return new ErrorResponseDTO((ex.getMessage()),LocalDateTime.now());
-//    }
-//
+    @ExceptionHandler(UnauthorizedException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED) //401
+    public ErrorResponseDTO handleUnauthorized(UnauthorizedException ex){
+        return new ErrorResponseDTO((ex.getMessage()),LocalDateTime.now());
+    }
+
 //    @ExceptionHandler(AccessDeniedException.class)
 //    @ResponseStatus(HttpStatus.FORBIDDEN) //403
 //    public ErrorResponseDTO handleForbidden(AccessDeniedException ex){
